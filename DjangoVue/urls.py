@@ -15,23 +15,35 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from eapp import views
+from eapp.views import views, sysManager,Recommd,MusicRate,Relationship
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/register/', views.Register.as_view()),
     path('api/login/', views.Login.as_view()),
-    path('api/Hot/', views.Hot.as_view()),
-    path('api/ratedMovie/', views.movieRate.as_view()),
-    path('api/unratedMovie/', views.unmovieRate.as_view()),
-    path('api/tableData/', views.tableData.as_view()),
-    path('api/saveMovieRate/', views.saveMovieRate.as_view()),
-    path('api/tableData/', views.tableData.as_view()),
-    path('api/query_non_related_tableData/', views.query_non_related_tableData.as_view()),
-    path('api/add_tableData/', views.add_tableData.as_view()),
-    path('api/update_tableData/', views.update_tableData.as_view()),
-    path('api/delete_tableData/', views.delete_tableData.as_view()),
-    path('api/recommend/', views.recommend.as_view()),
-    path('api/refreshRecommend/', views.refreshRecommend.as_view()),
+    path('api/Hot/', Recommd.Hot.as_view()),
+    path('api/recommend/', Recommd.recommend.as_view()),
+    path('api/ratedMusic/', MusicRate.MusicRate.as_view()),
+    path('api/unratedMusic/', MusicRate.UnRatedMusic.as_view()),
+    path('api/saveMusicRate/', MusicRate.saveMusicRate.as_view()),
+    path('api/updateMusicRate/', MusicRate.updateMusicRate.as_view()),
+    path('api/delMusicRate/', MusicRate.delMusicRate.as_view()),
+
+
+    path('api/tableData/', Relationship.Relationship.as_view()),
+    path('api/query_non_related_tableData/', Relationship.query_non_related_tableData.as_view()),
+    path('api/add_tableData/', Relationship.add_tableData.as_view()),
+    path('api/update_tableData/', Relationship.update_tableData.as_view()),
+    path('api/delete_tableData/', Relationship.delete_tableData.as_view()),
+    path('api/delUser/', sysManager.UserDel.as_view()),
+    path('api/loadAllUser/', sysManager.UserQuery.as_view()),
+    path('api/loadSearchUser/', sysManager.UserLikeQuery.as_view()),
+    path('api/loadSearchSong/', sysManager.SongLikeQuery.as_view()),
+    path('api/loadAllSong/', sysManager.SongQuery.as_view()),
+    path('api/delSong/', sysManager.SongDel.as_view()),
+
+
+
+    # path('api/refreshRecommend/', views.refreshRecommend.as_view()),
 ]
